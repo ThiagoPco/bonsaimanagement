@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui">
+
+        <p:outputPanel styleClass="ui-fluid">
+
+            <p:panel id="bonsaiImage" header="#{messages.label_image}" style="max-width:400px">
+                <o:graphicImage value="#{bonsaiBean.uploadedImageContents}" dataURI="true"
+                    rendered="#{not empty bonsaiBean.uploadedImageContents}" width="200px" />
+                <p:fileUpload mode="advanced" fileLimit="1"
+                    fileUploadListener="#{bonsaiBean.handleImageUpload}" update="bonsaiImage :growlForm:growl"
+                    cancelLabel="#{messages.upload_cancel}" uploadLabel="#{messages.upload_upload}" label="#{messages.upload_choose}"
+                    multiple="false" style="overflow:auto;width:380px"/>
+            </p:panel>
+            <p:panelGrid columns="3" columnClasses="ui-grid-col-4,ui-grid-col-6,ui-grid-col-2" layout="grid" style="max-width:400px">
+                <h:outputLabel value="#{messages.field_label_bonsai_codigo}:" for="codigoEditInput" />
+                <p:inputText value="#{bonsaiBean.bonsai.codigo}"  id="codigoEditInput" 
+                    label="#{messages.field_label_bonsai_codigo}" />
+                <p:message for="codigoEditInput" display="icon" />
+                <h:outputLabel value="#{messages.field_label_bonsai_descricao}:" for="descricaoEditInput" />
+                <p:inputText value="#{bonsaiBean.bonsai.descricao}" id="descricaoEditInput" 
+                    label="#{messages.field_label_bonsai_descricao}" />
+                <p:message for="descricaoEditInput" display="icon" />
+                <h:outputLabel value="#{messages.field_label_bonsai_dataAquisicao}:" for="dataAquisicaoEditInput" />
+                <p:calendar id="dataAquisicaoEditInput" navigator="true" value="#{bonsaiBean.bonsai.dataAquisicao}" label="#{messages.field_label_bonsai_dataAquisicao}" />
+                <p:message for="dataAquisicaoEditInput" display="icon" />
+                <h:outputLabel value="#{messages.field_label_bonsai_nome}:" for="nomeEditInput" />
+                <p:inputText value="#{bonsaiBean.bonsai.nome}" id="nomeEditInput" 
+                    label="#{messages.field_label_bonsai_nome}" />
+                <p:message for="nomeEditInput" display="icon" />
+                <h:outputLabel value="#{messages.field_label_bonsai_estilo}:" for="estiloSelect" />
+                <p:selectOneMenu value="#{bonsaiBean.bonsai.estilo}" converter="omnifaces.GenericEnumConverter"  id="estiloSelect">
+                    <f:selectItem noSelectionOption="true" itemLabel="" />
+                    <f:selectItems value="#{bonsaiBean.estiloSelectItems}" />
+                </p:selectOneMenu>
+                <p:message for="estiloSelect" display="icon" />
+                <h:outputLabel value="#{messages.field_label_bonsai_tamanho}:" for="tamanhoEditInput" />
+                <p:inputText value="#{bonsaiBean.bonsai.tamanho}" id="tamanhoEditInput" label="#{messages.field_label_bonsai_tamanho}" >
+                    <f:convertNumber />
+                </p:inputText>
+                <p:message for="tamanhoEditInput" display="icon" />
+                <h:outputLabel value="#{messages.field_label_bonsai_classificacao}:" for="classificacaoSelect" />
+                <p:selectOneMenu value="#{bonsaiBean.bonsai.classificacao}" converter="omnifaces.GenericEnumConverter"  id="classificacaoSelect">
+                    <f:selectItem noSelectionOption="true" itemLabel="" />
+                    <f:selectItems value="#{bonsaiBean.classificacaoSelectItems}" />
+                </p:selectOneMenu>
+                <p:message for="classificacaoSelect" display="icon" />
+            </p:panelGrid>
+        </p:outputPanel>
+</html>

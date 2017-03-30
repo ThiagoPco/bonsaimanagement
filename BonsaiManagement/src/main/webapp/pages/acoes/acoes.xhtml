@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui">
+<ui:composition template="/templates/layout.xhtml">
+  <ui:define name="content">
+
+    <h:form prependId="false" id="acoesDataForm" onkeypress="if (event.keyCode == 13) {return false; }">
+
+        <p:dataGrid var="acoes" value="#{acoesBean.acoesList}"
+            columns="3" layout="grid"
+            rows="9" paginator="true" id="cars"
+            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="3,9,18,30">
+        
+            <f:facet name="header">
+                
+                <p:commandButton value="#{messages.create_new_acoes}" icon="ui-icon-plusthick"
+                        action="/pages/acoes/acoesCreate?faces-redirect=true" />
+            </f:facet>
+            <p:panel>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{messages.field_label_acoes_tipo}" />
+                    <h:outputText value="#{acoes.tipo.id}" />
+                    <h:outputText value="#{messages.field_label_acoes_dataRealizada}" />
+                    <h:outputText value="#{acoes.dataRealizada}"><f:convertDateTime /></h:outputText>
+                    <h:outputText value="#{messages.field_label_acoes_descricao}" />
+                    <h:outputText value="#{acoes.descricao}" />
+                </h:panelGrid>
+                <h:panelGroup style="text-align: center;">
+                    <p:commandButton action="#{'/pages/acoes/acoesView?faces-redirect=true&amp;id='.concat(acoes.id)}"
+                        icon="ui-icon-zoomin"
+                        title="#{messages.label_view}" />
+                    <p:commandButton action="#{'/pages/acoes/acoesEdit?faces-redirect=true&amp;id='.concat(acoes.id)}"
+                        icon="ui-icon-pencil"
+                        resetValues="true"
+                        title="#{messages.label_edit}" />
+                    <p:commandButton icon="ui-icon-copy" action="#{'/pages/acoes/acoesAttachments?faces-redirect=true&amp;id='.concat(acoes.id)}" title="#{messages.label_attachments}" />
+                    <p:commandButton icon="ui-icon-close" 
+                        oncomplete="PF('deleteAcoesDialogWidget').show()"
+                        title="#{messages.label_delete}" >
+                        <f:setPropertyActionListener value="#{acoes}"
+                            target="#{acoesBean.acoes}" />
+                    </p:commandButton>
+                </h:panelGroup>
+            </p:panel>
+        </p:dataGrid>
+    </h:form>
+    <p:confirmDialog id="deleteAcoesDialog" widgetVar="deleteAcoesDialogWidget"
+        header="#{messages.label_confirm_deletion}"
+        severity="alarm">
+        <f:facet name="message"><h:outputText value="#{messages.label_delete_record}" escape="false"/></f:facet>
+        <p:outputPanel>
+          <h:form>
+            <div style="text-align: center; margin:10px">
+              <p:commandButton value="#{messages.label_yes}" action="#{acoesBean.delete}" update=":acoesDataForm :growlForm:growl" oncomplete="PF('deleteAcoesDialogWidget').hide()" />
+              <p:commandButton value="#{messages.label_no}" onclick="PF('deleteAcoesDialogWidget').hide()" type="button" />
+            </div>
+          </h:form>
+        </p:outputPanel>
+    </p:confirmDialog>
+  </ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,252 @@
+{
+  "info1": "======================================================================================================",
+  "info2": "= This Project was generated with generjee. http://generjee.com                                      =",
+  "info3": "= You can import this file into the generjee tool, then change the project model and generate again. =",
+  "info4": "======================================================================================================",
+  "entities": [
+    {
+      "name": "Bonsai",
+      "id": 1,
+      "lookupField": 0,
+      "imageUploadEnabled": true,
+      "lazyLoading": true,
+      "fields": [
+        {
+          "id": 0,
+          "name": "id",
+          "type": "Autoincremented ID",
+          "editable": false,
+          "showInTable": false,
+          "required": true
+        },
+        {
+          "id": 1,
+          "name": "codigo",
+          "type": "Number",
+          "editable": true,
+          "showInTable": true,
+          "integerLength": 5,
+          "required": false
+        },
+        {
+          "id": 2,
+          "name": "descricao",
+          "type": "String",
+          "editable": true,
+          "showInTable": true,
+          "stringLength": "500",
+          "required": false
+        },
+        {
+          "id": 3,
+          "name": "dataAquisicao",
+          "type": "Date",
+          "editable": true,
+          "showInTable": true,
+          "required": false
+        },
+        {
+          "id": 4,
+          "name": "nome",
+          "type": "String",
+          "editable": true,
+          "showInTable": true,
+          "stringLength": "100",
+          "required": true
+        },
+        {
+          "id": 5,
+          "name": "estilo",
+          "type": "Enumeration (Single)",
+          "editable": true,
+          "showInTable": true,
+          "required": false,
+          "enumerationValues": "Hokidachi (vassoura),Chokkan (ereto formal),Moyogi (ereto informal),Shakan (inclinado ou oblíquo),Kengai (cascata),Han Kengai (semi-cascata),Bunjingi (literati),Fukinagashi (varrido pelo vento),Sokan (tronco duplo),Kabudachi (múltiplos troncos),Yose Ue (floresta),seki Joju (raiz abraçada à rocha),Ishisuki (crescimento em rocha),Ikadabuki (balsa),Sharimiki (madeira morta)"
+        },
+        {
+          "id": 6,
+          "name": "tamanho",
+          "type": "Decimal",
+          "editable": true,
+          "showInTable": true,
+          "integerLength": "1",
+          "fractionLength": 2,
+          "required": false
+        },
+        {
+          "id": 7,
+          "name": "classificacao",
+          "type": "Enumeration (Single)",
+          "editable": true,
+          "showInTable": true,
+          "required": false,
+          "enumerationValues": "Keshi Tsubu (menos de 3cm),Shito (de 3 a 8cm),Mame (de 8 a 15cm),Shohin (15 a 25cm),Kifu (25 a 40cm),Chu (40 a 60cm),Dai (60 a 10ocm),Bonju (acima de 100cm)"
+        },
+        {
+          "id": 8,
+          "name": "acoesRealizadas",
+          "type": "Relation",
+          "editable": true,
+          "showInTable": true,
+          "referenceType": "1:n",
+          "referenceEntity": "Acoes"
+        },
+        {
+          "id": 9,
+          "name": "agenda",
+          "type": "Relation",
+          "editable": true,
+          "showInTable": true,
+          "referenceType": "1:n",
+          "referenceEntity": "Agenda"
+        }
+      ]
+    },
+    {
+      "name": "Agenda",
+      "id": 2,
+      "lookupField": 0,
+      "fields": [
+        {
+          "id": 0,
+          "name": "id",
+          "type": "Autoincremented ID",
+          "editable": false,
+          "showInTable": false,
+          "required": true
+        },
+        {
+          "id": 1,
+          "name": "tipo",
+          "type": "Relation",
+          "editable": true,
+          "showInTable": true,
+          "referenceType": "n:1",
+          "referenceEntity": "TipoAcao"
+        },
+        {
+          "id": 2,
+          "name": "dataPrevista",
+          "type": "Date",
+          "editable": true,
+          "showInTable": true,
+          "required": true
+        },
+        {
+          "id": 3,
+          "name": "acaoRealizada",
+          "type": "Boolean",
+          "editable": true,
+          "showInTable": true,
+          "required": false
+        },
+        {
+          "id": 4,
+          "name": "descricao",
+          "type": "String",
+          "editable": true,
+          "showInTable": true,
+          "stringLength": "500",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "TipoAcao",
+      "id": 3,
+      "lookupField": 0,
+      "fields": [
+        {
+          "id": 0,
+          "name": "id",
+          "type": "Autoincremented ID",
+          "editable": false,
+          "showInTable": false,
+          "required": true
+        },
+        {
+          "id": 1,
+          "name": "nome",
+          "type": "String",
+          "editable": true,
+          "showInTable": true,
+          "stringLength": 50,
+          "required": true
+        },
+        {
+          "id": 2,
+          "name": "descricao",
+          "type": "String",
+          "editable": true,
+          "showInTable": true,
+          "stringLength": "500",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Acoes",
+      "id": 4,
+      "lookupField": 0,
+      "attachmentsEnabled": true,
+      "fields": [
+        {
+          "id": 0,
+          "name": "id",
+          "type": "Autoincremented ID",
+          "editable": false,
+          "showInTable": false,
+          "required": true
+        },
+        {
+          "id": 1,
+          "name": "tipo",
+          "type": "Relation",
+          "editable": true,
+          "showInTable": true,
+          "referenceType": "n:1",
+          "referenceEntity": "TipoAcao"
+        },
+        {
+          "id": 2,
+          "name": "dataRealizada",
+          "type": "Date",
+          "editable": true,
+          "showInTable": true,
+          "required": true
+        },
+        {
+          "id": 3,
+          "name": "descricao",
+          "type": "String",
+          "editable": true,
+          "showInTable": true,
+          "stringLength": "500",
+          "required": false
+        },
+        {
+          "id": 4,
+          "name": "agenda",
+          "type": "Relation",
+          "editable": true,
+          "showInTable": true,
+          "referenceType": "1:1",
+          "referenceEntity": "Agenda"
+        }
+      ]
+    }
+  ],
+  "appSettings": {
+    "generjeeversion": "1.0",
+    "appName": "BonsaiManagement",
+    "package": "org.tg",
+    "masterDetailsStyle": "2",
+    "dataListStyle": "2",
+    "pfTheme": "bootstrap",
+    "runtarget": "as",
+    "layer": {
+      "rest": true
+    }
+  },
+  "guid": "46957d11-8c4b-4af9-b4a5-52713dc780f3"
+}

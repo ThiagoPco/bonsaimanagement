@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui">
+<ui:composition template="/templates/layout.xhtml">
+  <ui:define name="content">
+  
+    <f:metadata>
+      <f:viewParam name="id" value="#{agendaBean.agenda}" converter="#{genericEntityConverter}" />
+    </f:metadata>
+    
+    <p:outputPanel id="agendaEditPanel">
+        <h:form id="editAgendaForm">
+            <ui:include src="/pages/agenda/agendaEditInclude.xhtml"/>
+            <div style="margin:10px">
+                <p:commandButton value="#{messages.label_save}" icon="ui-icon-disk" actionListener="#{agendaBean.persist}"
+                        action="/pages/agenda/agenda?faces-redirect=true" update=":agendaEditPanel :growlForm:growl" />
+                <p:commandButton value="#{messages.label_close}" icon="ui-icon-close"
+                        action="/pages/agenda/agenda?faces-redirect=true" immediate="true" />
+            </div>
+        </h:form>
+    </p:outputPanel>
+    
+    <p:dialog dynamic="true" id="createTipoFromEditDialog"
+        header="#{messages.dialog_agenda_create_tipo}" modal="true"
+        widgetVar="createTipoFromEditDialogWidget" maximizable="true">
+        <p:ajax event="close" listener="#{tipoAcaoBean.reset}" />
+        <p:outputPanel id="createTipoFromEditPanel">
+            <h:form id="createTipoFromEditForm">
+                <ui:include src="/pages/tipoAcao/tipoAcaoEditInclude.xhtml">
+                    <ui:param name="hideAgendaSelectInput" value="true" />
+                </ui:include>
+                <div style="text-align: center; margin: 10px">
+                    <p:commandButton
+                        action="#{agendaBean.updateTipo(tipoAcaoBean.tipoAcao)}"
+                        value="#{messages.label_save}" icon="ui-icon-disk"
+                        actionListener="#{tipoAcaoBean.persist}"
+                        update=":editAgendaForm:tipoSelectInput :createTipoFromEditPanel :growlForm:growl"
+                        oncomplete="if(!args.validationFailed) PF('createTipoFromEditDialogWidget').hide()" />
+                    <p:commandButton value="#{messages.label_close}"
+                        icon="ui-icon-close"
+                        onclick="PF('createTipoFromEditDialogWidget').hide()"
+                        type="button" />
+                </div>
+            </h:form>
+        </p:outputPanel>
+    </p:dialog>
+    
+  </ui:define>
+  
+</ui:composition>
+</html>

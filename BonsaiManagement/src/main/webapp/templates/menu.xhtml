@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+  <h:form>
+  <p:menu>
+    <p:submenu label="#{messages.menu_pages}">
+      
+      <p:menuitem value="#{messages.menu_bonsais}" url="/pages/bonsai/bonsai.xhtml" icon="icon-entity" ajax="false" async="false" />
+      
+      <p:menuitem value="#{messages.menu_agendas}" url="/pages/agenda/agenda.xhtml" icon="icon-entity" ajax="false" async="false" />
+      
+      <p:menuitem value="#{messages.menu_tipoAcaos}" url="/pages/tipoAcao/tipoAcao.xhtml" icon="icon-entity" ajax="false" async="false" />
+      
+      <p:menuitem value="#{messages.menu_acoess}" url="/pages/acoes/acoes.xhtml" icon="icon-entity" ajax="false" async="false" />
+      
+    </p:submenu>
+    
+  </p:menu>
+  </h:form>
+</ui:composition>
+</html>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui">
+<ui:composition template="/templates/layout.xhtml">
+  <ui:define name="content">
+
+    <h:form prependId="false" id="tipoAcaoDataForm" onkeypress="if (event.keyCode == 13) {return false; }">
+
+        <p:dataGrid var="tipoAcao" value="#{tipoAcaoBean.tipoAcaoList}"
+            columns="3" layout="grid"
+            rows="9" paginator="true" id="cars"
+            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="3,9,18,30">
+        
+            <f:facet name="header">
+                
+                <p:commandButton value="#{messages.create_new_tipoAcao}" icon="ui-icon-plusthick"
+                        action="/pages/tipoAcao/tipoAcaoCreate?faces-redirect=true" />
+            </f:facet>
+            <p:panel>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{messages.field_label_tipoAcao_nome}" />
+                    <h:outputText value="#{tipoAcao.nome}" />
+                    <h:outputText value="#{messages.field_label_tipoAcao_descricao}" />
+                    <h:outputText value="#{tipoAcao.descricao}" />
+                </h:panelGrid>
+                <h:panelGroup style="text-align: center;">
+                    <p:commandButton action="#{'/pages/tipoAcao/tipoAcaoView?faces-redirect=true&amp;id='.concat(tipoAcao.id)}"
+                        icon="ui-icon-zoomin"
+                        title="#{messages.label_view}" />
+                    <p:commandButton action="#{'/pages/tipoAcao/tipoAcaoEdit?faces-redirect=true&amp;id='.concat(tipoAcao.id)}"
+                        icon="ui-icon-pencil"
+                        resetValues="true"
+                        title="#{messages.label_edit}" />
+                    <p:commandButton icon="ui-icon-close" 
+                        oncomplete="PF('deleteTipoAcaoDialogWidget').show()"
+                        title="#{messages.label_delete}" >
+                        <f:setPropertyActionListener value="#{tipoAcao}"
+                            target="#{tipoAcaoBean.tipoAcao}" />
+                    </p:commandButton>
+                </h:panelGroup>
+            </p:panel>
+        </p:dataGrid>
+    </h:form>
+    <p:confirmDialog id="deleteTipoAcaoDialog" widgetVar="deleteTipoAcaoDialogWidget"
+        header="#{messages.label_confirm_deletion}"
+        severity="alarm">
+        <f:facet name="message"><h:outputText value="#{messages.label_delete_record}" escape="false"/></f:facet>
+        <p:outputPanel>
+          <h:form>
+            <div style="text-align: center; margin:10px">
+              <p:commandButton value="#{messages.label_yes}" action="#{tipoAcaoBean.delete}" update=":tipoAcaoDataForm :growlForm:growl" oncomplete="PF('deleteTipoAcaoDialogWidget').hide()" />
+              <p:commandButton value="#{messages.label_no}" onclick="PF('deleteTipoAcaoDialogWidget').hide()" type="button" />
+            </div>
+          </h:form>
+        </p:outputPanel>
+    </p:confirmDialog>
+  </ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui">
+
+    <p:panel header="#{messages.label_image}" style="max-width:400px" >
+        <o:graphicImage value="#{bonsaiBean.uploadedImageContents}" dataURI="true"
+            rendered="#{not empty bonsaiBean.uploadedImageContents}" width="200px"/>
+    </p:panel>
+    
+    <h:panelGrid columns="2" styleClass="dialog" columnClasses="col1,col2" >
+        
+        <h:outputText value="#{messages.field_label_bonsai_codigo}:" />
+        <h:outputText value="#{bonsaiBean.bonsai.codigo}" />
+
+        <h:outputText value="#{messages.field_label_bonsai_descricao}:" />
+        <h:outputText value="#{bonsaiBean.bonsai.descricao}" />
+
+        <h:outputText value="#{messages.field_label_bonsai_dataAquisicao}:" />
+        <h:outputText value="#{bonsaiBean.bonsai.dataAquisicao}" ><f:convertDateTime /></h:outputText>
+
+        <h:outputText value="#{messages.field_label_bonsai_nome}:" />
+        <h:outputText value="#{bonsaiBean.bonsai.nome}" />
+
+        <h:outputText value="#{messages.field_label_bonsai_estilo}:" />
+        <h:outputText value="#{bonsaiBean.getLabelForEstilo(bonsaiBean.bonsai.estilo)}" />
+
+        <h:outputText value="#{messages.field_label_bonsai_tamanho}:" />
+        <h:outputText value="#{bonsaiBean.bonsai.tamanho}" ><f:convertNumber /></h:outputText>
+
+        <h:outputText value="#{messages.field_label_bonsai_classificacao}:" />
+        <h:outputText value="#{bonsaiBean.getLabelForClassificacao(bonsaiBean.bonsai.classificacao)}" />
+
+    </h:panelGrid>
+</html>
