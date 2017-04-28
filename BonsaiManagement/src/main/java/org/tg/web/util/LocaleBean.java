@@ -46,7 +46,7 @@ public class LocaleBean implements Serializable {
     	if (this.locale == null || this.locale.getLanguage() == null) {
     		return null;
     	}
-        return this.locale.getLanguage();
+        return this.locale.toString();
     }
     
    public void setSelectedLocale(String localeString) {

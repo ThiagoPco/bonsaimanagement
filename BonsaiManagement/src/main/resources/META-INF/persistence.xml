@@ -5,10 +5,42 @@ xsi:schemaLocation="
 http://xmlns.jcp.org/xml/ns/persistence
 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
+
     <persistence-unit name="persistenceUnit" transaction-type="JTA">
-        <jta-data-source>java:comp/DefaultDataSource</jta-data-source>
+        <jta-data-source>java:/BonsaiManagementDS</jta-data-source>
 	    <properties>
-	      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+	      <property name="javax.persistence.schema-generation.database.action" value="none"/>
 	    </properties>
     </persistence-unit>
+ 
+    
+    <!-- 
+     <persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
+        <description>
+            Persistence unit for the JPA tutorial of the Hibernate Getting Started Guide
+        </description>
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+       
+        <class>org.tg.domain.AcoesAttachment</class>
+        <class>org.tg.domain.AcoesEntity</class>
+        <class>org.tg.domain.AgendaEntity</class>
+        <class>org.tg.domain.BaseEntity</class>
+        <class>org.tg.domain.BonsaiEntity</class>
+        <class>org.tg.domain.BonsaiImage</class>
+        <class>org.tg.domain.TipoAcaoEntity</class>
+
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bonsaimanagement" />
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <property name="javax.persistence.jdbc.password" value="tg220190" />
+
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.hbm2ddl.auto" value="create" />
+        </properties>
+
+    </persistence-unit>
+     -->
+    
 </persistence>

@@ -15,6 +15,7 @@
 			<default-locale>en</default-locale>
 			<supported-locale>en</supported-locale>
 			<supported-locale>de</supported-locale>
+			<supported-locale>pt_BR</supported-locale>
 		</locale-config>
 	</application>
 	
