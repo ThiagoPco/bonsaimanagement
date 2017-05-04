@@ -32,18 +32,10 @@
                 <h:panelGrid columns="2">
                     <h:outputText value="#{messages.field_label_bonsai_codigo}" />
                     <h:outputText value="#{bonsai.codigo}" ><f:convertNumber /></h:outputText>
-                    <h:outputText value="#{messages.field_label_bonsai_descricao}" />
-                    <h:outputText value="#{bonsai.descricao}" />
-                    <h:outputText value="#{messages.field_label_bonsai_dataAquisicao}" />
-                    <h:outputText value="#{bonsai.dataAquisicao}"><f:convertDateTime /></h:outputText>
                     <h:outputText value="#{messages.field_label_bonsai_nome}" />
                     <h:outputText value="#{bonsai.nome}" />
                     <h:outputText value="#{messages.field_label_bonsai_estilo}" />
                     <h:outputText value="#{bonsaiBean.getLabelForEstilo(bonsai.estilo)}" />
-                    <h:outputText value="#{messages.field_label_bonsai_tamanho}" />
-                    <h:outputText value="#{bonsai.tamanho}"><f:convertNumber /></h:outputText>
-                    <h:outputText value="#{messages.field_label_bonsai_classificacao}" />
-                    <h:outputText value="#{bonsaiBean.getLabelForClassificacao(bonsai.classificacao)}" />
                 </h:panelGrid>
                 <h:panelGroup style="text-align: center;">
                     <p:commandButton action="#{'/pages/bonsai/bonsaiView?faces-redirect=true&amp;id='.concat(bonsai.id)}"

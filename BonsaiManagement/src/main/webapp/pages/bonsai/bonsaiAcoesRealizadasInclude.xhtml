@@ -16,7 +16,7 @@
                   style="float:right;">
        </p:commandButton>
        
-       <p:pickList id="bonsaiAcoesRealizadassPickList" var="acoes" itemLabel="#{acoes.id}"
+       <p:pickList id="bonsaiAcoesRealizadassPickList" var="acoes" itemLabel="#{acoes.tipo.nome} - #{acoes.dataRealizada}"
                    value="#{bonsaiBean.acoesRealizadass}" itemValue="#{acoes}"
                    showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains" >
            <o:converter converterId="omnifaces.ListConverter" list="#{bonsaiBean.fullAcoesRealizadassList}"/>

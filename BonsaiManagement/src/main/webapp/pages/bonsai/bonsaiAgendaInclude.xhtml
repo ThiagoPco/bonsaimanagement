@@ -16,7 +16,7 @@
                   style="float:right;">
        </p:commandButton>
        
-       <p:pickList id="bonsaiAgendasPickList" var="agenda" itemLabel="#{agenda.id}"
+       <p:pickList id="bonsaiAgendasPickList" var="agenda" itemLabel="#{agenda.tipo.nome} - #{agenda.dataPrevista}"
                    value="#{bonsaiBean.agendas}" itemValue="#{agenda}"
                    showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains" >
            <o:converter converterId="omnifaces.ListConverter" list="#{bonsaiBean.fullAgendasList}"/>

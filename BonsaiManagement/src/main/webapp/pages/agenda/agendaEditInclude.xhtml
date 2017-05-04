@@ -18,7 +18,7 @@
                         <f:selectItem noSelectionOption="true" itemLabel="" />
                         <f:selectItems value="#{agendaBean.tipos}" 
                                     var="tipoAcao" 
-                                    itemLabel="#{tipoAcao.id}"
+                                    itemLabel="#{tipoAcao.nome}"
                                     itemValue="#{tipoAcao}" />
                         <o:converter converterId="omnifaces.SelectItemsConverter" list="#{agendaBean.tipos}" />
                     </p:selectOneMenu>
